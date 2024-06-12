@@ -100,6 +100,20 @@ services:
     volumes:
       - resin-data:/data:ro
 
+  fan:
+    container_name: fan
+    restart: always
+    image: mrcool1575/docker-rpi-fan:latest
+    environment:
+      - DESIRED_TEMP=60
+      - FAN_PIN=14
+      - FAN_PWM_MIN=25
+      - FAN_PWM_MAX=100
+      - FAN_PWM_FREQ=25000
+      - P_TEMP=15
+      - I_TEMP=0.4
+    devices:
+      - /dev/gpiomem
 volumes:
   resin-data:
   redis-data:
